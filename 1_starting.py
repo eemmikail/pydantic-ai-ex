@@ -35,5 +35,6 @@ response_2 = basic_agent.run_sync(
     )
 
 print(response_2.output)
+print(response_2.all_messages())
 
 #print_cost_info(calculate_cost(model_name, response_2.usage()))

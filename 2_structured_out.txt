@@ -1,0 +1,73 @@
+[
+    ModelRequest(
+        parts=[
+            SystemPromptPart(
+                content=(
+                    "You are an helpful professional assistant.\n"
+                    "Analyze the mail and extract the information about the event."
+                ),
+                timestamp=datetime.datetime(2025, 4, 20, 16, 16, 8, 243113, tzinfo=datetime.timezone.utc),
+                dynamic_ref=None,
+                part_kind='system-prompt'
+            ),
+            UserPromptPart(
+                content=(
+                    "There is an mail from Jane Doe.\n"
+                    "Today is 2025-04-20.\n\n"
+                    "Mail:\n"
+                    "Subject: Planning for Our Mid‑Year Marketing Strategy Summit\n\n"
+                    "Hi there,\n\n"
+                    "I hope you're doing well. I'm reaching out on behalf of ACME Corp because we're gearing up for our Mid‑Year Marketing Strategy Summit, "
+                    "which will take place June 10th through 12th in the Manhattan Conference Hall on Broadway in New York. Over the three days, we'd like to kick things off with a welcome breakfast before our CMO delivers the opening keynote, then break into workshops on digital campaign optimization and customer journey mapping. That first evening, we're planning a networking dinner with Sarah Lin from TrendAnalytics sharing her insights.\n\n"
+                    "On the second day, we'll tackle market segmentation in the morning, pause for a buffet lunch (with vegetarian and gluten‑free options), and regroup for a panel discussion on emerging social media channels before wrapping up with a cocktail hour. Finally, on day three, attendees will present their roadmaps over a late‑morning session, enjoy a farewell lunch, and catch a shuttle back to JFK in the afternoon.\n\n"
+                    "To make everything run smoothly, we'll need dual projection screens, lapel mics for three presenters, and a livestream feed to our London office. We also have a few special needs: one guest is vegan, two are pescatarian, and three have nut allergies. We're booking twenty rooms at the nearby Harborview Hotel, with check‑in on June 9th and checkout on the 12th, plus airport and local shuttle service.\n\n"
+                    "Could you send over your event package options—ideally with a detailed cost breakdown—alongside a preliminary floor plan that fits our group, and confirm your AV capabilities? If possible, we'd appreciate a suggested timeline for deposits and final headcount by next Tuesday, April 25th.\n\n"
+                    "Thanks so much for your help. I'm looking forward to your proposal!\n\n"
+                    "Best regards,\n"
+                    "Jane Doe\n"
+                    "Vice President, Marketing\n"
+                    "ACME Corp\n"
+                    "jane.doe@acmecorp.com | +1 212 555 0123\n"
+                ),
+                timestamp=datetime.datetime(2025, 4, 20, 16, 16, 8, 243113, tzinfo=datetime.timezone.utc),
+                part_kind='user-prompt'
+            )
+        ],
+        instructions=None,
+        kind='request'
+    ),
+    ModelResponse(
+        parts=[
+            ToolCallPart(
+                tool_name='final_result',
+                args=(
+                    '{\n'
+                    '  "title": "Mid-Year Marketing Strategy Summit",\n'
+                    '  "start_date": "2025-06-10",\n'
+                    '  "end_date": "2025-06-12",\n'
+                    '  "location": "Manhattan Conference Hall, Broadway, New York",\n'
+                    '  "description": "The Mid-Year Marketing Strategy Summit will feature a welcome breakfast, keynote address by the CMO, workshops, networking dinner, panel discussions, and presentations by attendees. Special dietary needs and accommodations are planned."\n'
+                    '}'
+                ),
+                tool_call_id='call_nOlU0zPPDEQd5Mo7ki07C2Fs',
+                part_kind='tool-call'
+            )
+        ],
+        model_name='gpt-4o-mini-2024-07-18',
+        timestamp=datetime.datetime(2025, 4, 20, 16, 16, 8, tzinfo=datetime.timezone.utc),
+        kind='response'
+    ),
+    ModelRequest(
+        parts=[
+            ToolReturnPart(
+                tool_name='final_result',
+                content='Final result processed.',
+                tool_call_id='call_nOlU0zPPDEQd5Mo7ki07C2Fs',
+                timestamp=datetime.datetime(2025, 4, 20, 16, 16, 10, 357084, tzinfo=datetime.timezone.utc),
+                part_kind='tool-return'
+            )
+        ],
+        instructions=None,
+        kind='request'
+    )
+]

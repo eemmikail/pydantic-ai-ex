@@ -1,0 +1,78 @@
+[
+    ModelRequest(
+        parts=[
+            SystemPromptPart(
+                content=(
+                    "You are an helpful professional assistant.\n"
+                    "Write a friendly and professional email to the co-worker."
+                ),
+                timestamp=datetime.datetime(2025, 4, 20, 16, 19, 41, 895625, tzinfo=datetime.timezone.utc),
+                dynamic_ref=None,
+                part_kind='system-prompt'
+            ),
+            SystemPromptPart(
+                content=(
+                    "Event Details:\n"
+                    "{\n"
+                    '  "title": "Mid-Year Marketing Strategy Summit",\n'
+                    '  "start_date": "2025-06-10",\n'
+                    '  "end_date": "2025-06-12",\n'
+                    '  "location": "Manhattan Conference Hall, Broadway, New York",\n'
+                    '  "description": "A three-day summit focusing on marketing strategies, including workshops on digital campaign optimization and customer journey mapping, networking dinner, panel discussions, and presentations by attendees."\n'
+                    "}\n\n"
+                    "Co-worker details:\n"
+                    "  NAME: Mikail Karadeniz\n"
+                    "  EMAIL: mikail.karadeniz@gmail.com\n"
+                    "  PHONE: +1234567890\n"
+                ),
+                timestamp=datetime.datetime(2025, 4, 20, 16, 19, 41, 895625, tzinfo=datetime.timezone.utc),
+                dynamic_ref=None,
+                part_kind='system-prompt'
+            ),
+            UserPromptPart(
+                content="I am Semra. I need help about writing an email to my co-worker.",
+                timestamp=datetime.datetime(2025, 4, 20, 16, 19, 41, 895625, tzinfo=datetime.timezone.utc),
+                part_kind='user-prompt'
+            )
+        ],
+        instructions=None,
+        kind='request'
+    ),
+    ModelResponse(
+        parts=[
+            ToolCallPart(
+                tool_name='final_result',
+                args=(
+                    '{\n'
+                    '  "subject": "Upcoming Mid-Year Marketing Strategy Summit",\n'
+                    '  "body": "Hi Mikail,\\n\\n'
+                    'I hope this message finds you well! I wanted to share some exciting details about the upcoming Mid-Year Marketing Strategy Summit. '
+                    'The event will take place from June 10 to June 12, 2025, at the Manhattan Conference Hall in New York.\\n\\n'
+                    'This three-day summit will feature workshops on digital campaign optimization, customer journey mapping, networking dinners, panel discussions, and presentations from attendees. '
+                    'It’s a great opportunity for us to gain insights and connect with others in the industry.\\n\\n'
+                    'Let me know if you’re planning to attend and if you’d like to collaborate on any presentations or discussions at the summit!\\n\\n'
+                    'Best regards,\\nSemra"\n'
+                    '}'
+                ),
+                tool_call_id='call_rGoF8mosXlohJWOQ1GUYpvjZ',
+                part_kind='tool-call'
+            )
+        ],
+        model_name='gpt-4o-mini-2024-07-18',
+        timestamp=datetime.datetime(2025, 4, 20, 16, 19, 41, tzinfo=datetime.timezone.utc),
+        kind='response'
+    ),
+    ModelRequest(
+        parts=[
+            ToolReturnPart(
+                tool_name='final_result',
+                content='Final result processed.',
+                tool_call_id='call_rGoF8mosXlohJWOQ1GUYpvjZ',
+                timestamp=datetime.datetime(2025, 4, 20, 16, 19, 44, 475593, tzinfo=datetime.timezone.utc),
+                part_kind='tool-return'
+            )
+        ],
+        instructions=None,
+        kind='request'
+    )
+]

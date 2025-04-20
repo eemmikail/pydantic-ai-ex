@@ -8,6 +8,7 @@ from dotenv import load_dotenv
 from costinfo import calculate_cost, print_cost_info
 from datetime import datetime
 from markdown import to_markdown
+from mails import complex_mail
 # Load environment variables from .env file
 load_dotenv()
 
@@ -37,28 +38,6 @@ class CoWorkerDetails(BaseModel):
 class Email(BaseModel):
     subject: str = Field(description="The subject of the email")
     body: str = Field(description="The body of the email")
-
-complex_mail = """
-    Subject: Planning for Our Mid‑Year Marketing Strategy Summit
-
-    Hi there,
-
-    I hope you're doing well. I'm reaching out on behalf of ACME Corp because we're gearing up for our Mid‑Year Marketing Strategy Summit, which will take place June 10th through 12th in the Manhattan Conference Hall on Broadway in New York. Over the three days, we'd like to kick things off with a welcome breakfast before our CMO delivers the opening keynote, then break into workshops on digital campaign optimization and customer journey mapping. That first evening, we're planning a networking dinner with Sarah Lin from TrendAnalytics sharing her insights.
-
-    On the second day, we'll tackle market segmentation in the morning, pause for a buffet lunch (with vegetarian and gluten‑free options), and regroup for a panel discussion on emerging social media channels before wrapping up with a cocktail hour. Finally, on day three, attendees will present their roadmaps over a late‑morning session, enjoy a farewell lunch, and catch a shuttle back to JFK in the afternoon.
-
-    To make everything run smoothly, we'll need dual projection screens, lapel mics for three presenters, and a livestream feed to our London office. We also have a few special needs: one guest is vegan, two are pescatarian, and three have nut allergies. We're booking twenty rooms at the nearby Harborview Hotel, with check‑in on June 9th and checkout on the 12th, plus airport and local shuttle service.
-
-    Could you send over your event package options—ideally with a detailed cost breakdown—alongside a preliminary floor plan that fits our group, and confirm your AV capabilities? If possible, we'd appreciate a suggested timeline for deposits and final headcount by next Tuesday, April 25th.
-
-    Thanks so much for your help. I'm looking forward to your proposal!
-
-    Best regards,
-    Jane Doe
-    Vice President, Marketing
-    ACME Corp
-    jane.doe@acmecorp.com | +1 212 555 0123
-    """
 
 basic_agent = Agent(
     model=model,
@@ -111,4 +90,4 @@ response_email = basic_agent_2.run_sync(
         user_prompt="I am Semra. I need help about writing an email to my co-worker.", deps=(event_details, co_worker_details)
     )
 
-print(response_email.all_messages)
+print(response_email.all_messages())

@@ -1,0 +1,168 @@
+[
+  ModelRequest(
+    parts=[
+      SystemPromptPart(
+        content="""
+Event Details: {
+  "title": "Mid-Year Marketing Strategy Summit",
+  "start_date": "2025-06-10",
+  "end_date": "2025-06-12",
+  "location": "Manhattan Conference Hall, Broadway, New York",
+  "description": "The Mid-Year Marketing Strategy Summit by ACME Corp will take place over three days from June 10th to June 12th, 2025, at the Manhattan Conference Hall in New York. The event will begin each day with various sessions including a welcome breakfast, keynote speech by the CMO, workshops on digital campaign optimization and customer journey mapping, networking dinner with insights from Sarah Lin of TrendAnalytics, market segmentation discussions, panel discussions on social media, cocktail hour, and presentations of roadmaps. Dietary accommodations include vegan, pescatarian, gluten-free, and nut allergy options. Accommodations include 20 rooms booked at Harborview Hotel with shuttle services to JFK airport. AV needs include dual projection screens, lapel mics for three presenters, and a livestream feed to the London office."
+}
+""",
+        timestamp=datetime.datetime(2025, 4, 20, 16, 2, 55, 848250, tzinfo=datetime.timezone.utc),
+        dynamic_ref=None,
+        part_kind='system-prompt'
+      ),
+      UserPromptPart(
+        content=(
+          "I am Mikail. Generate invitation emails for John and Jane from me. "
+          "Both of them are my co-workers and my friends. Use a friendly tone. "
+          "Pay attention to the specific details about the person and specifically mention the event characteristics that fit the person."
+        ),
+        timestamp=datetime.datetime(2025, 4, 20, 16, 2, 55, 848250, tzinfo=datetime.timezone.utc),
+        part_kind='user-prompt'
+      )
+    ],
+    instructions=None,
+    kind='request'
+  ),
+
+  ModelResponse(
+    parts=[
+      ToolCallPart(
+        tool_name='get_user_details',
+        args='{"name": "John"}',
+        tool_call_id='call_JcuWwdV6fnPIwwNjsTSIFIYb',
+        part_kind='tool-call'
+      ),
+      ToolCallPart(
+        tool_name='get_user_details',
+        args='{"name": "Jane"}',
+        tool_call_id='call_SFdsF4bVh6nBvlqjqDGFLflc',
+        part_kind='tool-call'
+      )
+    ],
+    model_name='gpt-4.1-mini-2025-04-14',
+    timestamp=datetime.datetime(2025, 4, 20, 16, 2, 55, tzinfo=datetime.timezone.utc),
+    kind='response'
+  ),
+
+  ModelRequest(
+    parts=[
+      RetryPromptPart(
+        content="""
+User not found. Please try again.
+User name should be lowercase.
+Self correct this and try again.
+""",
+        tool_name='get_user_details',
+        tool_call_id='call_JcuWwdV6fnPIwwNjsTSIFIYb',
+        timestamp=datetime.datetime(2025, 4, 20, 16, 2, 57, 356210, tzinfo=datetime.timezone.utc),
+        part_kind='retry-prompt'
+      ),
+      RetryPromptPart(
+        content="""
+User not found. Please try again.
+User name should be lowercase.
+Self correct this and try again.
+""",
+        tool_name='get_user_details',
+        tool_call_id='call_SFdsF4bVh6nBvlqjqDGFLflc',
+        timestamp=datetime.datetime(2025, 4, 20, 16, 2, 57, 356210, tzinfo=datetime.timezone.utc),
+        part_kind='retry-prompt'
+      )
+    ],
+    instructions=None,
+    kind='request'
+  ),
+
+  ModelResponse(
+    parts=[
+      ToolCallPart(
+        tool_name='get_user_details',
+        args='{"name": "john"}',
+        tool_call_id='call_A5x9xEYeU6Ohjcn8ucKZI4Ij',
+        part_kind='tool-call'
+      ),
+      ToolCallPart(
+        tool_name='get_user_details',
+        args='{"name": "jane"}',
+        tool_call_id='call_M6MjhQ9Zhq971Ady6QTmy7UF',
+        part_kind='tool-call'
+      )
+    ],
+    model_name='gpt-4.1-mini-2025-04-14',
+    timestamp=datetime.datetime(2025, 4, 20, 16, 2, 57, tzinfo=datetime.timezone.utc),
+    kind='response'
+  ),
+
+  ModelRequest(
+    parts=[
+      ToolReturnPart(
+        tool_name='get_user_details',
+        content={
+          'name': 'John Doe',
+          'email': 'john.doe@example.com',
+          'phone': '+1234567890',
+          'details': 'John is a food lover. He never misses a chance to eat.'
+        },
+        tool_call_id='call_A5x9xEYeU6Ohjcn8ucKZI4Ij',
+        timestamp=datetime.datetime(2025, 4, 20, 16, 2, 59, 510282, tzinfo=datetime.timezone.utc),
+        part_kind='tool-return'
+      ),
+      ToolReturnPart(
+        tool_name='get_user_details',
+        content={
+          'name': 'Jane Smith',
+          'email': 'jane.smith@example.com',
+          'phone': '+1234567890',
+          'details': 'Jane is a hardworking person. She doesnt think other than work.'
+        },
+        tool_call_id='call_M6MjhQ9Zhq971Ady6QTmy7UF',
+        timestamp=datetime.datetime(2025, 4, 20, 16, 2, 59, 510282, tzinfo=datetime.timezone.utc),
+        part_kind='tool-return'
+      )
+    ],
+    instructions=None,
+    kind='request'
+  ),
+
+  ModelResponse(
+    parts=[
+      ToolCallPart(
+        tool_name='final_result',
+        args=(
+          '{"emails":['
+            '{"to":"john.doe@example.com",'
+            '"title":"Join Me at the Mid-Year Marketing Strategy Summit!",'
+            '"body":"Hey John,\\n\\nI hope you’re doing great! I wanted to personally invite you to the Mid-Year Marketing Strategy Summit happening from June 10th to June 12th, 2025, at the Manhattan Conference Hall in New York. Given your love for good food, you’ll definitely enjoy the welcome breakfast and the networking dinner, which will have a variety of delicious options including vegan, pescatarian, gluten-free, and nut allergy accommodations.\\n\\nBesides the food, there will be some amazing sessions including a keynote speech by our CMO, workshops on digital campaign optimization, customer journey mapping, and insightful market segmentation discussions. It’s a great chance to mix business with a bit of fun, including panel discussions, cocktail hours, and presentations.\\n\\nHope you can make it! Let me know if you need me to arrange the accommodation or shuttle service.\\n\\nCheers,\\nMikail"},'
+            '{"to":"jane.smith@example.com",'
+            '"title":"Invitation to the Mid-Year Marketing Strategy Summit - A Must Attend Event!",'
+            '"body":"Hi Jane,\\n\\nI wanted to invite you to the Mid-Year Marketing Strategy Summit by ACME Corp from June 10th to June 12th, 2025, at the Manhattan Conference Hall, New York. Knowing how hardworking you are, this summit is packed with insightful sessions like workshops on digital campaign optimization, customer journey mapping, and market segmentation discussions that will definitely be worth your time.\\n\\nThere’s also a keynote speech by our CMO, panel discussions on social media, and presentations of roadmaps that I think you will find valuable for our projects and your ongoing work.\\n\\nAccommodations are taken care of at the Harborview Hotel with shuttle services to JFK airport, so it’s convenient too.\\n\\nI really hope you can join me for this event. It would be great to attend together!\\n\\nBest,\\nMikail"}'
+          ']}'
+        ),
+        tool_call_id='call_DxQ4qU58PnsPpBlqLhTo97TD',
+        part_kind='tool-call'
+      )
+    ],
+    model_name='gpt-4.1-mini-2025-04-14',
+    timestamp=datetime.datetime(2025, 4, 20, 16, 2, 59, tzinfo=datetime.timezone.utc),
+    kind='response'
+  ),
+
+  ModelRequest(
+    parts=[
+      ToolReturnPart(
+        tool_name='final_result',
+        content='Final result processed.',
+        tool_call_id='call_DxQ4qU58PnsPpBlqLhTo97TD',
+        timestamp=datetime.datetime(2025, 4, 20, 16, 3, 5, 542838, tzinfo=datetime.timezone.utc),
+        part_kind='tool-return'
+      )
+    ],
+    instructions=None,
+    kind='request'
+  )
+]
